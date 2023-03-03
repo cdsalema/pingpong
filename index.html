@@ -19,38 +19,87 @@
     </canvas>
     <script>
         let espessuralinha = 15;
+        const gapX=10;
+        const campo={
+            w: window.innerWidth,
+            h: window.innerHeight,
+            draw:function(){
+                canvasCtx.fillStyle="#286047"
+                canvasCtx.fillRect(0,0,this.w,this.h)
+            },
+        }
+
+        const linha={
+            w: 15,
+            h: campo.h,
+            draw: function(){
+                canvasCtx.fillStyle="#ffffff"
+                canvasCtx.fillRect(campo.w / 2 - this.w / 2,0,this.w,this.h)
+            },
+        }
+
+        const raqueteEsq={
+            x: gapX,
+            y: 0,
+            w: linha.w,
+            h: 200,
+            draw: function(){
+                canvasCtx.fillStyle="#ffffff"
+                canvasCtx.fillRect(this.x,this.y,this.w,this.h)
+            },
+        }
+
+        const raqueteDir={
+            x: campo.w-linha.w-gapX,
+            y:100,
+            w: linha.w,
+            h: 200,
+            draw: function(){
+                canvasCtx.fillStyle="#ffffff"
+                canvasCtx.fillRect(this.x,this.y,this.w,this.h)
+            },
+        }
+
+        const placar={
+            player:1,
+            pc: 2,
+            draw: function(){
+                canvasCtx.font="bold 75px Arial"
+                canvasCtx.textAlign="center"
+                canvasCtx.textBaseline = "top"
+                canvasCtx.fillStyle = "#01341D"
+                canvasCtx.fillText(this.player,campo.w/4,50)
+                canvasCtx.fillText(this.pc,campo.w/4+campo.w/2,50)
+            }
+        }
+
+        const bola={
+            x: 300,
+            y:200,
+            r: 20,
+            draw:function(){
+                canvasCtx.fillStyle="#ffffff"
+                canvasCtx.beginPath()
+                canvasCtx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false)
+                canvasCtx.fill()
+            }
+        }
+
         const canvasElmt= document.querySelector("canvas"),
         canvasCtx=canvasElmt.getContext("2d")
         function setup(){
-            canvasElmt.width=canvasCtx.width=window.innerWidth
-            canvasElmt.height=canvasCtx.height=window.innerHeight
+            canvasElmt.width=canvasCtx.width=campo.w
+            canvasElmt.height=canvasCtx.height=campo.h
         }
         function draw(){
-            //fundo mesa pingpong
-            canvasCtx.fillStyle="#286047"
-            canvasCtx.fillRect(0,0,window.innerWidth,window.innerHeight)
-            //linha central mesa                        
-            canvasCtx.fillStyle="#ffffff"
-            const x = window.innerWidth/2 - espessuralinha/2;
-            const y =0;
-            const w = espessuralinha;
-            const h = window.innerHeight;
-            canvasCtx.fillRect(x,y,w,h)
-            //raquete esquerda
-            canvasCtx.fillRect(10,400,espessuralinha,200)
-            //raquete direita
-            canvasCtx.fillRect(window.innerWidth-espessuralinha-10,300,espessuralinha,200)
-            //bola pingpong
-            canvasCtx.beginPath()
-            canvasCtx.arc(200, 300, 20, 0, 2 * Math.PI, false)
-            canvasCtx.fill()
-            //placar
-            canvasCtx.font="bold 75px Arial"
-            canvasCtx.textAlign="center"
-            canvasCtx.textBaseline = "top"
-            canvasCtx.fillStyle = "#01341D"
-            canvasCtx.fillText('3',window.innerWidth/4,50)
-            canvasCtx.fillText('1',window.innerWidth/4+window.innerWidth/2,50)
+            campo.draw();
+            linha.draw();
+            raqueteEsq.draw(),
+            raqueteDir.draw(),
+            placar.draw();
+            bola.draw();
+            
+           
         }
 
         setup();
