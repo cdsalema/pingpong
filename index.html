@@ -20,6 +20,9 @@
     <script>
         let espessuralinha = 15;
         const gapX=10;
+
+        const mouse={x:0,y:0}
+
         const campo={
             w: window.innerWidth,
             h: window.innerHeight,
@@ -43,9 +46,13 @@
             y: 0,
             w: linha.w,
             h: 200,
+            _move: function(){
+                this.y=mouse.y - this.h/2
+            },
             draw: function(){
                 canvasCtx.fillStyle="#ffffff"
                 canvasCtx.fillRect(this.x,this.y,this.w,this.h)
+                this._move()
             },
         }
 
@@ -54,15 +61,26 @@
             y:100,
             w: linha.w,
             h: 200,
+            _move: function(){
+                this.y=bola.y
+            },
             draw: function(){
                 canvasCtx.fillStyle="#ffffff"
                 canvasCtx.fillRect(this.x,this.y,this.w,this.h)
+                this._move()
             },
         }
 
         const placar={
-            player:1,
-            pc: 2,
+            player: 0,
+            pc: 0,
+            PontoPlayer: function(){
+                this.player++
+            },
+
+            PontoPc: function () {
+                this.pc++
+            },
             draw: function(){
                 canvasCtx.font="bold 75px Arial"
                 canvasCtx.textAlign="center"
@@ -74,15 +92,64 @@
         }
 
         const bola={
-            x: 300,
-            y:200,
+            x: 0,
+            y:0,
             r: 20,
+            speed:5,
+            direcaoX:1,
+            direcaoY:1,
+            _calcPosicao: function(){
+                //mecaninca de pontuacao jogador
+                if(this.x> campo.w -this.r-raqueteDir.w -gapX){
+                    if(this.y+this.r>raqueteDir.y &&
+                    this.y-this.r<raqueteDir.y+raqueteDir.h){
+                        this._inverteX()
+                    }else{
+                        placar.PontoPlayer()
+                        this._Reiniciar()
+                    }
+                }
+                //mecaninca de pontuacao PC
+                if(this.x < this.r+raqueteEsq.w+gapX){
+                    if(this.y +this.r>raqueteEsq.y && 
+                        this.y-this.r<raqueteEsq.y+raqueteEsq.h){
+                        this._inverteX()
+                    }else {
+                        placar.PontoPc()
+                        this._Reiniciar()
+                    }
+                }
+                //verifica limites do campo superior e inferior
+                if(
+                    (this.y-this.r<0 && this.direcaoY<0)||
+                    (this.y>campo.h-this.r && this.direcaoY>0)
+                   ){
+                    this._inverteY()
+                    
+                }
+            },
+            _inverteX: function(){
+                this.direcaoX*=-1
+            },
+            _inverteY: function(){
+                this.direcaoY*=-1
+            },
+            _Reiniciar: function(){
+                this.x=campo.w/2
+                this.y=campo.h/2
+            },
+            _move: function(){
+                this.x+=this.direcaoX*this.speed
+                this.y+=this.direcaoY*this.speed
+            },
             draw:function(){
                 canvasCtx.fillStyle="#ffffff"
                 canvasCtx.beginPath()
                 canvasCtx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false)
                 canvasCtx.fill()
-            }
+                this._move()
+                this._calcPosicao()
+            },
         }
 
         const canvasElmt= document.querySelector("canvas"),
@@ -98,12 +165,34 @@
             raqueteDir.draw(),
             placar.draw();
             bola.draw();
-            
-           
         }
 
+        window.animateFrame = (function () {
+        return (
+          window.requestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          window.oRequestAnimationFrame ||
+          window.msRequestAnimationFrame ||
+          function (callback) {
+            return window.setTimeout(callback, 1000 / 60)
+          }
+        )
+        })()
+
+        function main(){
+        animateFrame(main)
+        draw()
+        }
+        
         setup();
-        draw();
+        main();
+
+        canvasElmt.addEventListener("mousemove",function(e) {
+            mouse.x=e.pageX
+            mouse.y=e.pageY
+
+        })
     </script>
 </body>
 </html>
