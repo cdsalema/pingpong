@@ -15,14 +15,13 @@
 </head>
 <body>
     <canvas>
-
     </canvas>
     <script>
-        let espessuralinha = 15;
+        //let espessuralinha = 15;
         const gapX=10;
-
         const mouse={x:0,y:0}
-
+        const canvasElmt= document.querySelector("canvas"),
+              canvasCtx=canvasElmt.getContext("2d")
         const campo={
             w: window.innerWidth,
             h: window.innerHeight,
@@ -30,6 +29,10 @@
                 canvasCtx.fillStyle="#286047"
                 canvasCtx.fillRect(0,0,this.w,this.h)
             },
+        }
+        function setup(){
+            canvasElmt.width=canvasCtx.width=campo.w
+            canvasElmt.height=canvasCtx.height=campo.h
         }
 
         const linha={
@@ -61,9 +64,20 @@
             y:100,
             w: linha.w,
             h: 200,
+            speed:3,
             _move: function(){
-                this.y=bola.y
+                if(this.y+this.h/2<bola.y+bola.r){
+                    this.y+= this.speed
+
+                }else{
+                    this.y-=this.speed
+                }
             },
+
+            speedup: function(){
+                this.speed+=1.5
+            },
+
             draw: function(){
                 canvasCtx.fillStyle="#ffffff"
                 canvasCtx.fillRect(this.x,this.y,this.w,this.h)
@@ -92,8 +106,8 @@
         }
 
         const bola={
-            x: 0,
-            y:0,
+            x:campo.w/2,
+            y:campo.h/2,
             r: 20,
             speed:5,
             direcaoX:1,
@@ -106,7 +120,7 @@
                         this._inverteX()
                     }else{
                         placar.PontoPlayer()
-                        this._Reiniciar()
+                        this._pointUP()
                     }
                 }
                 //mecaninca de pontuacao PC
@@ -116,7 +130,7 @@
                         this._inverteX()
                     }else {
                         placar.PontoPc()
-                        this._Reiniciar()
+                        this._pointUP()
                     }
                 }
                 //verifica limites do campo superior e inferior
@@ -134,7 +148,12 @@
             _inverteY: function(){
                 this.direcaoY*=-1
             },
-            _Reiniciar: function(){
+            _speedup: function(){
+                this.speed+=1.5
+            },
+            _pointUP: function(){
+                raqueteDir.speedup()
+                this._speedup()
                 this.x=campo.w/2
                 this.y=campo.h/2
             },
@@ -152,12 +171,6 @@
             },
         }
 
-        const canvasElmt= document.querySelector("canvas"),
-        canvasCtx=canvasElmt.getContext("2d")
-        function setup(){
-            canvasElmt.width=canvasCtx.width=campo.w
-            canvasElmt.height=canvasCtx.height=campo.h
-        }
         function draw(){
             campo.draw();
             linha.draw();
