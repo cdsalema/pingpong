@@ -77,7 +77,7 @@
             },
 
             speedup: function () {
-                this.speed += 1.5
+                this.speed += 0.75
             },
 
             draw: function () {
@@ -90,13 +90,28 @@
         const placar = {
             player: 0,
             pc: 0,
+            PontosMax: 12,
+            _fim: function () {
+                if (this.player > PontosMax - 1) {
+                    this._ResultadoFinal()
+
+                } else if (this.pc > PontosMax - 1) {
+                    this._ResultadoFinal()
+                } else {
+                    this.draw()
+                }
+            },
+
             PontoPlayer: function () {
                 this.player++
+
             },
 
             PontoPc: function () {
                 this.pc++
+
             },
+
             draw: function () {
                 canvasCtx.font = "bold 75px Arial"
                 canvasCtx.textAlign = "center"
@@ -123,6 +138,7 @@
                     } else {
                         placar.PontoPlayer()
                         this._pointUP()
+                        this._ResultadoFinal()
                     }
                 }
                 //mecaninca de pontuacao PC
@@ -133,6 +149,7 @@
                     } else {
                         placar.PontoPc()
                         this._pointUP()
+                        this._ResultadoFinal()
                     }
                 }
                 //verifica limites do campo superior e inferior
@@ -144,6 +161,25 @@
 
                 }
             },
+            _ResultadoFinal: function () {
+                if (placar.player === placar.PontosMax) {
+                    bola.spedd = 0
+                    placar.player = 0
+                    placar.pc = 0
+
+                    bola.x = campo.w / 2
+                    bola.y = campo.h / 2
+                    raqueteDir.speed = 0
+                } else if (placar.pc === placar.PontosMax) {
+                    bola.spedd = 0
+                    placar.player = 0
+                    placar.pc = 0
+
+                    bola.x = campo.w / 2
+                    bola.y = campo.h / 2
+                    raqueteDir.speed = 0
+                }
+            },
             _inverteX: function () {
                 this.direcaoX *= -1
             },
@@ -152,12 +188,18 @@
             },
             _speedup: function () {
                 this.speed += 1.5
+                console.log(bola.speed);
+
             },
             _pointUP: function () {
                 raqueteDir.speedup()
                 this._speedup()
                 this.x = campo.w / 2
                 this.y = campo.h / 2
+                placar._fim()
+                console.log(raqueteDir.speed);
+
+
             },
             _move: function () {
                 this.x += this.direcaoX * this.speed
