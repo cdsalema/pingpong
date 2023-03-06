@@ -2,8 +2,18 @@
 
 ## criacao do jogo ping pong 
 
-### ideia incial do jogo seria para praticar o uso obetos para desenho em HTML5.
 
-![image](https://user-images.githubusercontent.com/56089674/222576544-d2ad75a9-8d38-4294-b32b-9bf96ee0e604.png)
+### ideia incial do jogo seria para praticar o uso metodos para desenho em HTML5.
+- [X] Mecaninca do jogador com mouse
+- [X] Mecanicna para controlar o PC
+- [X] Aumento progressivo da dificuldade do jogo
+- [X] Movimento da bola
+- [X] Mecanica de pontuação
+- [X] Mecaninca de FIM de jogo
+- [ ] Alterar a cor da mesa de jogo.
 
-##Deploy:<a href="https://pingpongcdsalema.netlify.app/">Clique Aqui!</a>
+
+![image](https://user-images.githubusercontent.com/56089674/223282434-9eeb391d-125c-4924-acb8-196d76b752c5.png)
+
+
+## Deploy:<a href="https://pingpongcdsalema.netlify.app/">Clique Aqui!</a>
