@@ -16,4 +16,4 @@
 ![image](https://user-images.githubusercontent.com/56089674/223282434-9eeb391d-125c-4924-acb8-196d76b752c5.png)
 
 
-## Deploy:<a href="https://pingpongcdsalema.netlify.app/">Clique Aqui!</a>
+## Deploy:<a href="https://pingpongcdsalema.netlify.app/">Clique Aqui!</a> <a href=" https://cdsalema.github.io/pingpong/">ou aqui</a>
