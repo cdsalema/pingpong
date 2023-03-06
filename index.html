@@ -28,7 +28,7 @@
             w: window.innerWidth,
             h: window.innerHeight,
             draw: function () {
-                canvasCtx.fillStyle = "#286047"
+                canvasCtx.fillStyle = "#2c3279"
                 canvasCtx.fillRect(0, 0, this.w, this.h)
             },
         }
@@ -141,13 +141,13 @@
                     canvasCtx.font = "bold 75px Arial"
                     canvasCtx.textAlign = "center"
                     canvasCtx.textBaseline = "top"
-                    canvasCtx.fillStyle = "#01341D"
-                    canvasCtx.fillText("FIM", campo.w / 2, campo.h / 2, 80)
+                    canvasCtx.fillStyle = "#1a1e48"
+                    canvasCtx.fillText("FIM", campo.w / 2, campo.h / 2, 300)
                 } else {
                     canvasCtx.font = "bold 75px Arial"
                     canvasCtx.textAlign = "center"
                     canvasCtx.textBaseline = "top"
-                    canvasCtx.fillStyle = "#01341D"
+                    canvasCtx.fillStyle = "#232860"
                     canvasCtx.fillText(this.player, campo.w / 4, 50)
                     canvasCtx.fillText(this.pc, campo.w / 4 + campo.w / 2, 50)
                 }
@@ -157,7 +157,7 @@
         const bola = {
             x: campo.w / 2,
             y: campo.h / 2,
-            r: 20,
+            r: 14,
             speed: 5,
             direcaoX: 1,
             direcaoY: 1,
