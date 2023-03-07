@@ -3,7 +3,7 @@
 ## Criação do jogo ping pong.
 
 
-### ideia incial do jogo seria para praticar o uso metodos para desenho em HTML5.
+### Idéia incial do jogo seria para praticar o uso de métodos para desenho em HTML5.
 - [X] Mecânica do jogador com mouse
 - [X] Mecânica para controlar o PC
 - [X] Aumento progressivo da dificuldade do jogo
