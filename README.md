@@ -4,13 +4,14 @@
 
 
 ### ideia incial do jogo seria para praticar o uso metodos para desenho em HTML5.
-- [X] Mecaninca do jogador com mouse
-- [X] Mecanicna para controlar o PC
+- [X] Mecânica do jogador com mouse
+- [X] Mecânica para controlar o PC
 - [X] Aumento progressivo da dificuldade do jogo
 - [X] Movimento da bola
-- [X] Mecanica de pontuação
-- [X] Mecaninca de FIM de jogo
-- [ ] Alterar a cor da mesa de jogo.
+- [X] Mecânica de pontuação
+- [X] Mecânica de FIM de jogo
+- [ ] Manter placar sendo exibodo após fim de jogo
+- [ ] Alterar a cor da mesa de jogo (2 temas)
 
 
 ![image](https://user-images.githubusercontent.com/56089674/223282434-9eeb391d-125c-4924-acb8-196d76b752c5.png)
