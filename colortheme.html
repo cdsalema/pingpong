@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Canvas Theming Example</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+    <button onclick="switchTheme()">Switch Theme</button>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        function draw(theme) {
+            if (theme === "dark") {
+                drawDarkTheme();
+            } else {
+                drawLightTheme();
+            }
+        }
+
+        function drawDarkTheme() {
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "white";
+            ctx.font = "30px Arial";
+            ctx.fillText("Dark Theme", 10, 50);
+        }
+
+        function drawLightTheme() {
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "black";
+            ctx.font = "30px Arial";
+            ctx.fillText("Light Theme", 10, 50);
+        }
+
+        function switchTheme() {
+            var currentTheme = canvas.getAttribute("data-theme");
+            if (currentTheme === "dark") {
+                canvas.setAttribute("data-theme", "light");
+                draw("light");
+            } else {
+                canvas.setAttribute("data-theme", "dark");
+                draw("dark");
+            }
+        }
+
+        // initialize theme on page load
+        canvas.setAttribute("data-theme", "light");
+        draw("light");
+    </script>
+</body>
+
+
+<!--segunda forma de alterar o tema.-->
+
+<body><!-- Define canvas element -->
+    <canvas id="myCanvas"></canvas>
+
+    <!-- Define button for switching themes -->
+    <button onclick="switchTheme()">Switch Theme</button>
+
+    <script>
+        // Initialize global variable to track active theme
+        var currentTheme = 1;
+
+        // Define draw method to be called initially and whenever theme changes
+        function draw() {
+            var canvas = document.getElementById('myCanvas');
+            var context = canvas.getContext('2d');
+
+            if (currentTheme == 1) {
+                // Theme 1 - update canvas properties as needed
+                canvas.style.backgroundColor = 'white';
+                context.fillStyle = 'black';
+                context.fillRect(10, 10, 50, 50);
+            } else if (currentTheme == 2) {
+                // Theme 2 - update canvas properties as needed
+                canvas.style.backgroundColor = 'black';
+                context.fillStyle = 'white';
+                context.fillRect(10, 10, 50, 50);
+            }
+        }
+
+        // Define function to switch between themes
+        function switchTheme() {
+            if (currentTheme == 1) {
+                currentTheme = 2; // Switch to theme 2
+            } else {
+                currentTheme = 1; // Switch back to theme 1
+            }
+
+            draw(); // Redraw canvas with updated theme properties
+        }
+
+        // Call draw method initially to draw canvas with default theme
+        draw();
+    </script>
+</body>
+
+</html>

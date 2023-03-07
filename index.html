@@ -21,8 +21,14 @@
 </head>
 
 <body>
-    <canvas>
-    </canvas>
+    <!-- <form>
+        <p>escolha a cor da mesa</p>
+        <input type="checkbox" class="azul" name="cor1" value="azul">
+        <label for="html">Azul</label><br>
+        <input type="checkbox" class="verde" name="cor2" value="verde">
+        <label for="html">Verde</label>
+    </form>-->
+    <canvas></canvas>
     <script>
 
         const gapX = 10;
@@ -32,8 +38,9 @@
         const campo = {
             w: window.innerWidth,
             h: window.innerHeight,
+            corCampo: "#2c3279",
             draw: function () {
-                canvasCtx.fillStyle = "#2c3279"
+                canvasCtx.fillStyle = this.corCampo//"#2c3279" tema azul
                 canvasCtx.fillRect(0, 0, this.w, this.h)
             },
         }
@@ -104,12 +111,13 @@
             pc: 0,
             PontosMax: 12,
             fim: false,
+            corPlacar: "#232860", //tema azul
             _fim: function () {
                 if (this.player > this.PontosMax - 1) {
                     this.fim = true
                     bola.spedd = 0
-                    this.player = 0
-                    this.pc = 0
+                    //this.player = 0
+                    //this.pc = 0
                     bola.x = campo.w / 2
                     bola.y = campo.h / 2
                     raqueteDir.speed = 0
@@ -118,8 +126,8 @@
                 } else if (this.pc > this.PontosMax - 1) {
                     this.fim = true
                     bola.spedd = 0
-                    this.player = 0
-                    this.pc = 0
+                    //this.player = 0
+                    //this.pc = 0
                     bola.x = campo.w / 2
                     bola.y = campo.h / 2
                     raqueteDir.speed = 0
@@ -146,13 +154,16 @@
                     canvasCtx.font = "bold 75px Arial"
                     canvasCtx.textAlign = "center"
                     canvasCtx.textBaseline = "top"
-                    canvasCtx.fillStyle = "#1a1e48"
+                    canvasCtx.fillStyle = this.corPlaacar //"#232860" tema azul
                     canvasCtx.fillText("FIM", campo.w / 2, campo.h / 2, 300)
+                    canvasCtx.fillText(this.player, campo.w / 4, 50)
+                    canvasCtx.fillText(this.pc, campo.w / 4 + campo.w / 2, 50)
+
                 } else {
                     canvasCtx.font = "bold 75px Arial"
                     canvasCtx.textAlign = "center"
                     canvasCtx.textBaseline = "top"
-                    canvasCtx.fillStyle = "#232860"
+                    canvasCtx.fillStyle = this.corPlacar //"#232860" tema azul
                     canvasCtx.fillText(this.player, campo.w / 4, 50)
                     canvasCtx.fillText(this.pc, campo.w / 4 + campo.w / 2, 50)
                 }
