@@ -1,6 +1,6 @@
 # PING&PONG
 
-## criacao do jogo ping pong 
+## Criação do jogo ping pong.
 
 
 ### ideia incial do jogo seria para praticar o uso metodos para desenho em HTML5.
@@ -16,4 +16,4 @@
 ![image](https://user-images.githubusercontent.com/56089674/223282434-9eeb391d-125c-4924-acb8-196d76b752c5.png)
 
 
-## Deploy:<a href="https://pingpongcdsalema.netlify.app/">Clique Aqui!</a> <a href=" https://cdsalema.github.io/pingpong/">ou aqui</a>
+## Deploy:<a href="https://pingpongcdsalema.netlify.app/">Clique Aqui!</a> || <a href="https://cdsalema.github.io/pingpong/">Aqui</a>
