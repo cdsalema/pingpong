@@ -10,7 +10,7 @@
 - [X] Movimento da bola
 - [X] Mecânica de pontuação
 - [X] Mecânica de FIM de jogo
-- [ ] Manter placar sendo exibodo após fim de jogo
+- [X] Manter placar sendo exibido após fim de jogo
 - [ ] Alterar a cor da mesa de jogo (2 temas)
 
 
