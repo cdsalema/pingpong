@@ -11,7 +11,6 @@
 - [X] Mecânica de pontuação
 - [X] Mecânica de FIM de jogo
 - [X] Manter placar sendo exibido após fim de jogo
-- [ ] Alterar a cor da mesa de jogo (2 temas)
 
 
 ![image](https://user-images.githubusercontent.com/56089674/223282434-9eeb391d-125c-4924-acb8-196d76b752c5.png)
